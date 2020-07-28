@@ -22,17 +22,29 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter App'),
-      ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
+        leading: Icon(Icons.access_alarm),
+        actions: <Widget>[
           Container(
-            width: double.infinity,
-            child: Card(
-              child: Text('Chart'),
+            child: Icon(
+              Icons.add,
             ),
           ),
-          UserTransactions(),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                child: Card(
+                  child: Text('Chart'),
+                ),
+              ),
+              UserTransactions(),
+            ],
+          ),
         ],
       ),
     );
