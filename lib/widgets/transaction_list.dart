@@ -32,44 +32,21 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (BuildContext context, index) {
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 15.0),
-                          child: Text(
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Theme.of(context).primaryColor,
-                                style: BorderStyle.solid,
-                              ),
-                              borderRadius: BorderRadius.circular(50.0))),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            transactions[index].title,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          Text(
-                            DateFormat.yMMMEd()
-                                .add_jm()
-                                .format(transactions[index].date),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(leading: CircleAvatar(radius: 30, child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: FittedBox(child: Text('\$${transactions[index].amount}',
+                        ),
                       ),
-                    ],
+                    ),
+                  ),
+                    title: Text(transactions[index].title, style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(DateFormat.yMMMEd().format(
+                        transactions[index].date,
+                      ),
+                    ),
                   ),
                 );
               },
