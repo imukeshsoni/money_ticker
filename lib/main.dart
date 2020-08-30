@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/widgets/chart.dart';
 
@@ -111,28 +113,41 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
-    final appBar = AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      title: Text('Personal Expenses'),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () => _startNewTransaction(context),
-        )
-      ],
-    );
+    final mediaQuery = MediaQuery.of(context);
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final PreferredSizeWidget appBar = Platform.isIOS
+        ? CupertinoNavigationBar(
+            middle: Text('Personal Expenses'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  child: Icon(CupertinoIcons.add),
+                  onTap: () => _startNewTransaction(context),
+                ),
+              ],
+            ),
+          )
+        : AppBar(
+            //Explicitly setting type for IOS devices when dart can not detect
+            backgroundColor: Theme.of(context).primaryColor,
+            title: Text('Personal Expenses'),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () => _startNewTransaction(context),
+              )
+            ],
+          );
     final txListWidget = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           1,
       child: TransactionList(_userTransaction, _deleteTransaction),
     );
-    return Scaffold(
-      appBar: appBar,
-      body: ListView(
+    final pageBody = SafeArea(
+      child: ListView(
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -141,8 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Show Chart"),
-                    Switch(
+                    Text(
+                      "Show Chart",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
                       value: _showChart,
                       onChanged: (val) {
                         setState(() {
@@ -157,9 +176,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.all(15.0),
                   width: double.infinity,
                   child: Container(
-                      height: (MediaQuery.of(context).size.height -
+                      height: (mediaQuery.size.height -
                               appBar.preferredSize.height -
-                              MediaQuery.of(context).padding.top) *
+                              mediaQuery.padding.top) *
                           0.3,
                       child: Chart(_recentTransaction)),
                 ),
@@ -170,9 +189,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(15.0),
                         width: double.infinity,
                         child: Container(
-                            height: (MediaQuery.of(context).size.height -
+                            height: (mediaQuery.size.height -
                                     appBar.preferredSize.height -
-                                    MediaQuery.of(context).padding.top) *
+                                    mediaQuery.padding.top) *
                                 0.7,
                             child: Chart(_recentTransaction)),
                       )
@@ -181,15 +200,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () => _startNewTransaction(context),
-      ),
     );
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            child: pageBody,
+          )
+        : Scaffold(
+            appBar: appBar,
+            body: pageBody,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Platform.isIOS
+                ? Container() //Render nothing if device is IOS
+                : FloatingActionButton(
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    onPressed: () => _startNewTransaction(context),
+                  ),
+          );
   }
 }
