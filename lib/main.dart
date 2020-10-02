@@ -43,9 +43,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  // String titleInput;
-  // String amountInput;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -84,6 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
+      elevation: 20.0,
+      isScrollControlled: true,
       context: ctx,
       builder: (_) {
         return NewTransaction(_addNewTransaction);
@@ -138,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Text(
                       "Show Chart",
-                      style: Theme.of(context).textTheme.headline1,
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                     Switch.adaptive(
                       activeColor: Theme.of(context).accentColor,
@@ -172,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: (mediaQuery.size.height -
                                     appBar.preferredSize.height -
                                     mediaQuery.padding.top) *
-                                0.7,
+                                0.6,
                             child: Chart(_recentTransaction)),
                       )
                     : txListWidget

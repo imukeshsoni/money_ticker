@@ -1,4 +1,4 @@
-#Fri Oct 02 10:38:28 IST 2020
+#Fri Oct 02 13:26:06 IST 2020
 base.0=C\:\\Users\\mukes\\Desktop\\Money Ticker\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
