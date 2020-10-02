@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\mukes\\Desktop\\personal_expenses\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\mukes\\Desktop\\Money Ticker\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\mukes\\Desktop\\personal_expenses\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\mukes\\Desktop\\Money Ticker\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
