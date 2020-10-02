@@ -1,16 +1,23 @@
-# personal_expenses
-
-A new Flutter project.
+#Money Ticker
+Money Ticker is a tracking application that enables you to track your weekly expenses and analyse them with the help of a chart. It captures your transaction date and time when you add a new transaction to help you remember those expenses. You can delete any added transation which you do not intent to keep a track anymore and the chart will automatically adjust according to updated transactions.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To start using this application, get Flutter installed in your system and an Emulator to run the application on either Android or iOS.
 
-A few resources to get you started if this is your first Flutter project:
+Link to install Flutter: 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+https://flutter.dev/docs/get-started/install
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+After installing, Make sure to satisfy all the dependencies by running following command in the terminal you can check it :
+
+```
+flutter doctor
+```
+To run the application on the emulator, you need to configure AVD manager and to install android studio go to following link :
+
+Android Studio : https://developer.android.com/studio
+
+Configure Dart and Flutter extension in your android studio and restart IDE. 
+
+Now you can run the application on you emulator or device!
