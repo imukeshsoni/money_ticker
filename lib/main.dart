@@ -1,20 +1,13 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/widgets/chart.dart';
+import 'package:money_ticker/widgets/chart.dart';
 
 import 'widgets/transaction_list.dart';
 import 'widgets/new_transaction.dart';
 import 'models/transaction.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations(
-  //   [
-  //     DeviceOrientation.portraitUp,
-  //     DeviceOrientation.portraitDown,
-  //   ],
-  // );
   runApp(MyApp());
 }
 
@@ -22,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Personal Expenses',
+      title: 'Money Ticker',
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
@@ -58,20 +51,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransaction = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'New shoes',
-    //   amount: 60.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Groceries',
-    //   amount: 50.0,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _userTransaction = [];
   bool _showChart = false;
   List<Transaction> get _recentTransaction {
     return _userTransaction.where((tx) {
@@ -117,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Personal Expenses'),
+            middle: Text('Money Ticker'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -131,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         : AppBar(
             //Explicitly setting type for IOS devices when dart can not detect
             backgroundColor: Theme.of(context).primaryColor,
-            title: Text('Personal Expenses'),
+            title: Text('Money Ticker'),
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.add),

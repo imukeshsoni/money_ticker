@@ -140,13 +140,13 @@
       "languageVersion": "2.0"
     },
     {
-      "name": "personal_expenses",
+      "name": "money_ticker",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-08-10T04:14:12.013416Z",
+  "generated": "2020-10-02T05:05:45.186702Z",
   "generator": "pub",
   "generatorVersion": "2.9.0"
 }
